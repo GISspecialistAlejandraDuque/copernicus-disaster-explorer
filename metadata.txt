@@ -2,16 +2,16 @@
 name=Copernicus Disaster Explorer
 qgisMinimumVersion=3.34
 qgisMaximumVersion=4.99
-supportsQt6=True
 description=Explore confirmed natural disasters in Italy and load the Sentinel imagery that captured them, with automatic band selection and symbology.
 about=This plugin connects confirmed disaster events (from CEMS, EFFIS) with Sentinel satellite imagery from Copernicus Data Space. For each event (flood, wildfire, volcano, landslide) it finds the matching Sentinel-1/2 images, downloads them with real-time progress, and loads the relevant spectral bands with appropriate false-color symbology for immediate visual analysis. Floods use dual-sensor search (SAR + optical). Requires a free Copernicus Data Space account (https://dataspace.copernicus.eu). Geographic coverage: Italy (expandable). Interface in Italian.
-version=2.0.0
-author=David Fernando Duque Ropero
+version=2.0.1
+author=GIS Specialist di Alejandra Duque Ropero
 email=cirugia@davidduque.com
 homepage=https://github.com/GISspecialistAlejandraDuque/copernicus-disaster-explorer
 tracker=https://github.com/GISspecialistAlejandraDuque/copernicus-disaster-explorer/issues
 repository=https://github.com/GISspecialistAlejandraDuque/copernicus-disaster-explorer
-changelog=2.0.0 - Dual sensor floods, chunked download with progress, footprint filtering, SAR symbology fix, cancel download, basemap support
+changelog=2.0.1 - Security fix: validate URL schemes, remove deprecated supportsQt6 flag
+    2.0.0 - Dual sensor floods, chunked download with progress, footprint filtering, SAR symbology fix, cancel download, basemap support
 tags=copernicus,sentinel,disaster,flood,fire,volcano,landslide,italy,cems,effis,emergency,remote sensing,sar,ndwi
 category=Raster
 icon=resources/icons/plugin_icon.png
