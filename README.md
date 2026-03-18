@@ -41,4 +41,4 @@ GNU General Public License v2.0 or later.
 
 ## Author
 
-David Fernando Duque Ropero
+GIS Specialist di Alejandra Duque Ropero
