@@ -23,6 +23,12 @@ from .config import API_TIMEOUT_MS, DOWNLOAD_TIMEOUT_MS, EFFIS_TIMEOUT_MS
 logger = logging.getLogger("CDE.network")
 
 
+def _validate_url_scheme(url):
+    """Ensure only https (or http) schemes are used — reject file:/ and custom schemes."""
+    if not url.startswith(("https://", "http://")):
+        raise NetworkError(f"URL scheme not allowed: {url}")
+
+
 class NetworkError(Exception):
     """Raised when a network request fails (timeout, HTTP error, etc.)."""
     def __init__(self, message, status_code=None):
@@ -140,6 +146,7 @@ def post_form(url, form_data, feedback=None):
 
     # --- Primary: Python stdlib ---
     try:
+        _validate_url_scheme(url)
         py_req = Request(url, data=body_bytes, method="POST")
         py_req.add_header("Content-Type", "application/x-www-form-urlencoded")
         py_req.add_header("Accept", "application/json")
@@ -233,6 +240,7 @@ def download_to_file(url, dest_path, headers=None, progress_callback=None,
     safe to use (Qt networking requires the main event loop).
     Respects QGIS proxy settings via _build_urllib_opener().
     """
+    _validate_url_scheme(url)
     py_req = Request(url, method="GET")
     py_req.add_header("User-Agent", "QGIS-CDE/2.0")
     if headers:
