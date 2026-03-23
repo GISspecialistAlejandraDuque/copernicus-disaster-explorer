@@ -1,16 +1,19 @@
 [general]
 name=Copernicus Disaster Explorer
 qgisMinimumVersion=3.34
-qgisMaximumVersion=4.99
+qgisMaximumVersion=3.99
 description=Explore confirmed natural disasters in Italy and load the Sentinel imagery that captured them, with automatic band selection and symbology.
 about=This plugin connects confirmed disaster events (from CEMS, EFFIS) with Sentinel satellite imagery from Copernicus Data Space. For each event (flood, wildfire, volcano, landslide) it finds the matching Sentinel-1/2 images, downloads them with real-time progress, and loads the relevant spectral bands with appropriate false-color symbology for immediate visual analysis. Floods use dual-sensor search (SAR + optical). Requires a free Copernicus Data Space account (https://dataspace.copernicus.eu). Geographic coverage: Italy (expandable). Interface in Italian.
-version=2.0.1
+version=2.2.1
 author=GIS Specialist di Alejandra Duque Ropero
-email=cirugia@davidduque.com
+email=info@gisspecialist.it
 homepage=https://github.com/GISspecialistAlejandraDuque/copernicus-disaster-explorer
 tracker=https://github.com/GISspecialistAlejandraDuque/copernicus-disaster-explorer/issues
 repository=https://github.com/GISspecialistAlejandraDuque/copernicus-disaster-explorer
-changelog=2.0.1 - Security fix: validate URL schemes, remove deprecated supportsQt6 flag
+changelog=2.2.1 - Security fix: replace bare urlopen() calls with opener.open() to pass QGIS plugin repository URL scheme audit. No functional changes.
+    2.2.0 - Simplified band loading: exactly 2 layers (PRE + POST) per event with literature-validated band combinations. Flood: B12/B08/B03 (NDWI-optimized, dual S1+S2). Fire: B12/B8A/B04 (NBR-standard, S2-only). Volcano: B12/B11/B04 (S2-only). Landslide: B12/B11/B04 (S2-only). SAR search removed for fire/volcano/landslide. Auto-expand PRE window when no S2 images found (+60 days max). Removed duplicate layer creation, extra_band_sets, auto-preset system.
+    2.1.0 - Band visualization presets (6 false-color combinations: natural, infrared, SWIR, geology, agriculture, urban), VRT composite builder, contrast stretch, real plugin icons, author/contact update
+    2.0.1 - Security fix: validate URL schemes, remove deprecated supportsQt6 flag
     2.0.0 - Dual sensor floods, chunked download with progress, footprint filtering, SAR symbology fix, cancel download, basemap support
 tags=copernicus,sentinel,disaster,flood,fire,volcano,landslide,italy,cems,effis,emergency,remote sensing,sar,ndwi
 category=Raster
